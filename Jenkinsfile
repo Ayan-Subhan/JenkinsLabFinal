@@ -23,4 +23,13 @@ pipeline {
             }
         }
     }
+    post{
+        always{
+            echo 'Post build condition running'
+        }
+        faliure{
+            echo 'Post Action if Build failed'
+        }
+    }
+    
 }
