@@ -1,19 +1,18 @@
 pipeline {
     agent any
-
+    tools{
+        maven 'Maven'
+     }
+    environment{
+        NEW_VERSION ='1.3.0'
+    }
     stages {
-        agent any
-        tools{
-            maven 'Maven'
-        }
-        environment{
-            NEW_VERSION ='1.3.0'
-        }
+     
         stage('Build') {
             steps {
                 echo 'Building..'
                 // Here you can define commands for your build
-                echo 'Building version $[NEW_VERSION]'
+                echo 'Building version ${NEW_VERSION}'
                 bat 'nvm install'
             }
         }
@@ -36,7 +35,7 @@ pipeline {
         always{
             echo 'Post build condition running'
         }
-        faliure{
+        failure{
             echo 'Post Action if Build failed'
         }
     }
